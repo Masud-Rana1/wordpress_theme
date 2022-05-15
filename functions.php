@@ -29,6 +29,7 @@ add_action('wp_enqueue_scripts', 'rez_add_google_fonts');
 
 //Theme Function
 function rez_customizer_register($wp_customize){
+   //Header Area function
    $wp_customize -> add_section('rez_header_area', array(
       'title' => __('Header Area', 'maganta'),
       'description' => 'if you interested to update your header area, you can do it here'
@@ -42,6 +43,27 @@ function rez_customizer_register($wp_customize){
       'description'=> 'Please,  Click Below to Change Your logo',
       'section' => 'rez_header_area',
    )));
+
+   //Menu Position Option
+   $wp_customize->add_section('rez_menu_position', array(
+      'title' => __('Menu Position Option' , 'maganta'),
+       'description' => 'if you interested to change your menu position you can do it, here.'
+   ));
+   $wp_customize ->add_setting('rez_menu_position', array(
+      'default' => 'right_menu',
+   ));
+   $wp_customize ->add_control('rez_menu_position', array(
+      'label' => 'Menu Position',
+      'description' => 'Select Your Menu Position',
+      'setting'=> 'rez_menu_position',
+      'section'=> 'rez_menu_position',
+      'type' => 'radio',
+      'choices' => array(
+         'left_menu' => 'Left Menu',
+         'right_menu' => 'Right Menu',
+         'center_menu' => 'Center Menu',
+      ),
+   ));
 }
 
 add_action('customize_register', 'rez_customizer_register');
